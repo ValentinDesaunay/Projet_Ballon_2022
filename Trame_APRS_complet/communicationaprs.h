@@ -1,5 +1,14 @@
+/**
+  @file communicationaprs.h
+  @brief Déclaration de la classe CommunicationAPRS
+  @version 1.0
+  @author Valentin DESAUNAY
+  @date 8/04/2022
+  */
+
 #ifndef COMMUNICATIONAPRS_H
 #define COMMUNICATIONAPRS_H
+
 #include <QTcpSocket>
 #include <QString>
 #include <QJsonObject>
@@ -9,7 +18,7 @@
 
 #include "decodagetrame.h"
 
-
+/** La classe Communication hérite de QObject */
 
 class CommunicationAPRS :  public QObject
 
@@ -17,7 +26,6 @@ class CommunicationAPRS :  public QObject
     Q_OBJECT
 public:
     CommunicationAPRS(QObject *parent = nullptr);
-
     QByteArray getDonnees() const;
     void connexionAPRS();
 
@@ -51,11 +59,8 @@ private:
     int service_port;
     QString loginMdp;
     QString stationInfo;
-    bool statut;
     bool chargerFichierIniConnexionAprs();
-    //QString loginMdpVehicule;
-    //QString stationInfoVehicule;
-
+    bool statut;
 
 };
 

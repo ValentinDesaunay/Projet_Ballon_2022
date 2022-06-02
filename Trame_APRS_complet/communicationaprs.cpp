@@ -1,3 +1,11 @@
+/**
+  @file communicationaprs.h
+  @brief Déclaration de la classe CommunicationAPRS
+  @version 1.0
+  @author Valentin DESAUNAY
+  @date 8/04/2022
+  */
+
 #include "communicationaprs.h"
 #include <QDebug>
 #include <QSettings>
@@ -6,9 +14,19 @@
 #include <QRandomGenerator>
 #include <QThread>
 
+/**
+ * @brief CommunicationAPRS::CommunicationAPRS
+ * @param parent
+ * @version 1.0
+ * @author Valentin DESAUNAY
+ * @date 8/04/2022
+ */
+
 CommunicationAPRS::CommunicationAPRS(QObject *parent): QObject(parent)
 {
+    // création d'une socket
     socketDeDialogueAvecServeur=new QTcpSocket(this);
+    // les connect des différents slots
     connect(socketDeDialogueAvecServeur,&QTcpSocket::connected,this,&CommunicationAPRS::onQTcpSocket_connected);
     connect(socketDeDialogueAvecServeur,&QTcpSocket::disconnected,this,&CommunicationAPRS::onQTcpSocket_disconnected);
     connect(socketDeDialogueAvecServeur,&QTcpSocket::readyRead,this,&CommunicationAPRS::onQTcpSocket_readyRead);
